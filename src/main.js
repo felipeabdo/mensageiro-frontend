@@ -4,14 +4,10 @@ import router from './router';
 import axios from 'axios';
 import './assets/styles.css';
 
-
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
-});
-
+// Configuração global do Axios
 axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
-axiosInstance.interceptors.request.use((config) => {
+axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -21,6 +17,7 @@ axiosInstance.interceptors.request.use((config) => {
 
 const app = createApp(App);
 
-app.config.globalProperties.$axios = axiosInstance;
+// Adiciona o Axios globalmente
+app.config.globalProperties.$axios = axios;
 
 app.use(router).mount('#app');
