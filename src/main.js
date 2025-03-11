@@ -9,6 +9,8 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:3000',
 });
 
+axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+
 axiosInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
