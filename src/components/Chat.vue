@@ -60,7 +60,13 @@
         >
           <template v-if="isMessageDeleted(message)">
             <button @click="restoreMessage(message.id)">↩️ Restaurar</button>
-            <button @click="deleteMessage(message.id, 'permanent')">🗑️ Apagar Definitivo</button>
+            <!-- Mostrar "Apagar Definitivo" apenas se for o remetente -->
+            <button 
+              v-if="message.sender_id === currentUser?.id"
+              @click="deleteMessage(message.id, 'permanent')"
+            >
+              🗑️ Apagar Definitivo
+            </button>
           </template>
           
           <template v-else>
