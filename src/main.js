@@ -5,7 +5,7 @@ import axios from 'axios';
 import './assets/styles.css';
 
 // Configuração global do Axios
-axios.defaults.baseURL = process.env.VUE_APP_API_URL;
+axios.defaults.baseURL = 'http://127.0.0.1:3000';
 
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
